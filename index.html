@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Goblin Hunter!</title>
+<style>
+.scoreBoard{
+	float:right;
+
+}
+
+</style>
+
+</head>
+<body>
+<div class="scoreBoard">
+<h1>Score: </h1>
+
+</div>
+
+<script type="text/javascript" >
+
+var gameOver=true;
+
+//create canvas tag with javascript
+var canvas=document.createElement('canvas');
+
+// create a context for javascript to play inside of 
+var context=canvas.getContext('2d');
+
+// give the canvas tag some substance
+canvas.width=512;
+canvas.height=480;
+
+var goblinsCaught=0;
+var pokeBalls=0;
+// console.dir(canvas);
+
+// put canvas element on the dom
+document.body.appendChild(canvas);
+
+var bgImage=new Image();
+
+bgImage.src='pokeBack.png';
+
+
+
+var hero=new Image();
+hero.src='ash.gif';
+var heroLocation={
+	x:100,
+	y:100
+
+
+}
+
+
+
+var goblin=new Image();
+goblin.src='pidgeoto.png';
+var goblinLocation={
+	x:Math.random()*448,
+	y:Math.random()*416
+}
+
+
+var dragonFly=new Image();
+dragonFly.src='dragonFly.png';
+var dragonFlyLocation={
+	x:Math.floor(Math.random()*448),
+	y:Math.floor(Math.random()*416)
+}
+
+var pokemonBall=new Image();
+pokemonBall.src='pokemonBall.png';
+var pokemonBallLocation={
+	x:Math.floor(Math.random()*448),
+	y:Math.floor(Math.random()*416)
+}
+
+var teamRocket1=new Image();
+teamRocket1.src='teamRocketRed.png';
+var teamRocket1Location={
+	x:Math.random()*448,
+	y:Math.random()*416
+}
+
+
+// This array will hold the key codes that currently pressed down
+var keysDown=[];
+
+
+//Make the hero move!
+//this does it the manual way
+addEventListener('keydown',function(event){
+
+	keysDown[event.keyCode]=true;
+});
+
+addEventListener('keyup',function(event){	
+	delete keysDown[event.keyCode];
+
+
+	});
+
+function update(){    
+    if(canMoveRight()){
+        if (39 in keysDown){
+            heroLocation.x += 10;
+        }
+    }
+        // move him right
+    if(canMoveLeft()){
+        if(37 in keysDown){
+        heroLocation.x -= 10;
+        }
+    }
+        // move him left    
+    if(canMoveUp()){
+        if (38 in keysDown){
+        heroLocation.y -= 10;
+        }
+    }
+        // move him up
+    if(canMoveDown()){
+        if(40 in keysDown){
+        heroLocation.y += 10;
+        }    
+    }
+
+pokeBallGrab();
+goblinSlap();
+monsterSlap();
+teamRocketBam();
+};
+
+function pokeBallGrab(){
+
+	 if((heroLocation.x<= (pokemonBallLocation.x+32) )&& (heroLocation.y<=(pokemonBallLocation.y+32)) &&(pokemonBallLocation.x<=(heroLocation.x+32))&& (pokemonBallLocation.y<=(heroLocation.y+32)))
+      {
+        resetBall();
+         
+         
+        
+         pokeBalls++;
+      }};
+
+
+
+
+
+function goblinSlap(){
+	
+   if((heroLocation.x<= (goblinLocation.x+32) )&& (heroLocation.y<=(goblinLocation.y+32)) &&(goblinLocation.x<=(heroLocation.x+32))&& (goblinLocation.y<=(heroLocation.y+32)))
+      {
+      	if(pokeBalls>0){
+        resetGoblin();
+         goblinsCaught++;
+         console.log(goblinsCaught);
+         highScore();
+         pokeBalls--;
+      }}};
+	
+function monsterSlap(){
+	
+	if((heroLocation.x<= (dragonFlyLocation.x+32) )&& (heroLocation.y<=(dragonFlyLocation.y+32)) &&(dragonFlyLocation.x<=(heroLocation.x+32))&& (dragonFlyLocation.y<=(heroLocation.y+32)))
+		{if(pokeBalls>0){
+			resetMonster();
+			goblinsCaught++;
+			console.log(goblinsCaught);
+			highScore();
+			pokeBalls--;
+		
+		}}
+};
+
+function teamRocketBam(){
+
+	 if((heroLocation.x<= (teamRocket1Location.x+32) )&& (heroLocation.y<=(teamRocket1Location.y+32)) &&(teamRocket1Location.x<=(heroLocation.x+32))&& (teamRocket1Location.y<=(heroLocation.y+32)))
+      {
+       
+         // window.alert("You lost!");
+
+         gameOver=true;
+        
+      }};
+
+
+
+
+function canMoveLeft(){
+    return heroLocation.x - 5 >= 0;
+}    
+
+function canMoveRight(){
+    return heroLocation.x + 5+40 < 448;
+}
+
+function canMoveUp(){
+    return heroLocation.y - 5 >= 0;
+}
+
+function canMoveDown(){
+    return heroLocation.y + 5 + 33 < 416;
+}
+
+
+
+
+//LEFT-37
+// UP-38
+//RIGHT-39
+//DOWN-40
+
+
+
+function resetMonster(){
+	gameOver=false;
+	dragonFlyLocation.x=Math.random()*448;
+	dragonFlyLocation.y=Math.random()*416;
+
+
+};
+
+
+function resetGoblin(){
+	gameOver=false;
+	goblinLocation.x=Math.random()*448;
+	goblinLocation.y=Math.random()*416;
+
+
+};
+
+
+function resetBall(){
+	gameOver=false;
+	pokemonBallLocation.x=Math.random()*448;
+	pokemonBallLocation.y=Math.random()*416;
+
+
+};
+
+
+function highScore(){
+
+	if(goblinsCaught>25){
+		alert("Congrats you got the high score!");
+	}
+}
+
+
+// if the hero runs into the goblin do x
+// make the golblin reappear after the hero captures him
+
+
+function draw(){
+	// this is where js draws our stuff
+	update();
+	context.drawImage(bgImage,0,0,512,480);
+	context.drawImage(hero,heroLocation.x,heroLocation.y);
+	context.drawImage(goblin,goblinLocation.x, goblinLocation.y,35,35);
+	context.drawImage(pokemonBall,pokemonBallLocation.x, pokemonBallLocation.y,15,15);
+	
+		if(goblinsCaught>2){
+
+			
+		context.drawImage(dragonFly,dragonFlyLocation.x, dragonFlyLocation.y,35,35);
+			
+		}
+
+		if(goblinsCaught>6){
+
+		context.drawImage(teamRocket1,teamRocket1Location.x, teamRocket1Location.y,35,35);
+			
+		}
+	requestAnimationFrame(draw);
+};
+
+draw();
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+

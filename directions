@@ -1,0 +1,137 @@
+√Stop your guy from running off the screen
+√Put the goblin in a random spot 
+COnsolidate any code you can
+√Find a different background
+Add a second goblin
+Add something the hero should avoid!
+Add a counter for high score (you'll need to create the div or add it to the DOM)
+Post the high score and current score
+√Alert the user if they reach the high score.
+Make it better. 
+examples
+-http://codeybarber.com/
+-http://tristanlobaugh.com/canvasgame/
+-http://willybman.com/shark-game/
+-http://freddycalk.com/projects/gobl
+
+for(var i=0;i<monsters.length;i++){
+	var monster=new Monster();
+
+}
+ //create array
+var monsterImage=[src='pidgeoto.jpg',src='dragonfly.gif',src='purpleOne.gif';,src='larados.gif';];
+
+//go from for loop to function to array
+
+function Monsters(x,y,image){
+	var x=
+
+	this.x=x;
+	this.y=y;
+	this.monster = new Image();
+	this.monster.src = "dragonFly.gif";
+	}
+
+var monsters[];
+
+monsters.push(new Monster(150,100,pidgeoto.png);
+
+
+
+function Zombie(){
+	this.zombie = new Image();
+	this.zombie.src = "img/zombie.png";
+	this.zombieLocX = Math.floor(Math.random()*canvas.width);
+	this.zombieLocY = Math.floor(Math.random()*canvas.height);
+	this.zombieVectorX;
+	this.zombieVectorY;
+}
+
+
+setInterval(function(){
+	for(var i = 0; i < zombies.length; i++){
+		if(zombies[i].zombieLocX < heroLoc.x){
+			zombies[i].zombieVectorX =	1 * zomSpeed * ((Math.floor(Math.random()*11))*0.1);
+		}else if(zombies[i].zombieLocX > heroLoc.x){
+			zombies[i].zombieVectorX = -1 * zomSpeed * ((Math.floor(Math.random()*11))*0.1);
+		}
+		if(zombies[i].zombieLocY < heroLoc.y){
+			zombies[i].zombieVectorY =	1 * zomSpeed * ((Math.floor(Math.random()*11))*0.1);
+		}else if(zombies[i].zombieLocY > heroLoc.y){
+			zombies[i].zombieVectorY = -1 * zomSpeed * ((Math.floor(Math.random()*11))*0.1);
+		}
+	}
+}, 500);
+
+
+
+function updateZombie(){
+	for(var i = 0; i < zombies.length; i++){
+		zombies[i].zombieLocX += zombies[i].zombieVectorX;
+		zombies[i].zombieLocY += zombies[i].zombieVectorY;
+		if(heroLoc.x >= (zombies[i].zombieLocX - 20) && heroLoc.x <= (zombies[i].zombieLocX + 20) && heroLoc.y >= (zombies[i].zombieLocY - 20) && heroLoc.y <= (zombies[i].zombieLocY + 20)){
+			gameActive = false;
+			document.getElementById("scoreboard").classList.add("red");
+			document.getElementById("scoreboard").classList.remove("green");
+		}
+	}
+}
+
+
+
+var hero=new Image();
+hero.src='ash.gif';
+var heroLocation={
+	x:100,
+	y:100
+
+
+}
+
+var goblin=new Image();
+goblin.src='pidgeoto.png';
+var goblinLocation={
+	x:150,
+	y:100
+}
+
+
+var mew=new Image();
+mew.src='mew.jpg';
+var mewLocation={
+	x:250,
+	y:200
+}
+
+
+
+
+
+
+
+
+
+
+
+monster[]=(Math.random()*10)-1;
+
+for(var i=0;i<monsters.length;i++){
+	var monster[i]=new Monster();
+	monsters[i].push(new Monster(i));
+
+}
+
+
+
+function Monsters(i){
+	var x=Math.random()+448;
+	var y=Math.random()+416;
+	this.x=x;
+	this.y=y;
+}
+var monsterImage=[src='pidgeoto.jpg',src='dragonfly.jpg',src='purpleOne.jpg';,src='larados.jpg';];
+
+	this.monsterImage[i]=image;
+	
+	}
+
