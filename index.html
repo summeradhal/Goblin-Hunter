@@ -204,6 +204,58 @@ function canMoveDown(){
 }
 
 
+//MOVE
+
+function moveMonster (){
+	value = Math.random()*2;
+	value2 = Math.random()*2;
+	value3 = Math.random()*2;
+	value4 = Math.random()*2;
+	value5 = Math.random()*2;
+
+
+	if (value > 1){
+		value = "-";
+	} else {		value = "+";
+	}
+	if (value2 > 1){
+		value2 = "-";
+	} else {
+		value2 = "+";
+	}
+	if (value3 > 1){
+		value3 = "-";
+	} else {
+		value3 = "+";
+	}
+	if (value4 > 1){
+		value4 = "-";
+	} else {
+		value4 = "+";
+	}
+	if (value5 > 1){
+		value5 = "-";
+	} else {
+		value5 = "+";
+	}
+
+	goblinLocation.x += Number(value + 20);
+	goblinLocation.y += Number(value + 20);
+	
+	dragonFlyLocation.x -= Number(value5 + 20);
+	dragonFlyLocation.y -= Number(value5 + 20);
+	
+}
+ setInterval(moveMonster,500);
+
+
+
+
+
+
+
+
+
 
 
 //LEFT-37
