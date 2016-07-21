@@ -23,11 +23,10 @@ var monsterImage=[src='pidgeoto.jpg',src='dragonfly.gif',src='purpleOne.gif';,sr
 
 //go from for loop to function to array
 
-function Monsters(x,y,image){
-	var x=
-
-	this.x=x;
-	this.y=y;
+function Monsters(){
+	
+	this.x = Math.floor(Math.random()*canvas.width);
+	this.y= Math.floor(Math.random()*canvas.height);
 	this.monster = new Image();
 	this.monster.src = "dragonFly.gif";
 	}
@@ -41,7 +40,7 @@ monsters.push(new Monster(150,100,pidgeoto.png);
 function Zombie(){
 	this.zombie = new Image();
 	this.zombie.src = "img/zombie.png";
-	this.zombieLocX = Math.floor(Math.random()*canvas.width);
+	this.zombieLocation = Math.floor(Math.random()*canvas.width);
 	this.zombieLocY = Math.floor(Math.random()*canvas.height);
 	this.zombieVectorX;
 	this.zombieVectorY;
@@ -134,4 +133,61 @@ var monsterImage=[src='pidgeoto.jpg',src='dragonfly.jpg',src='purpleOne.jpg';,sr
 	this.monsterImage[i]=image;
 	
 	}
+
+
+
+
+goblinSlap();
+
+
+function goblinSlap(){
+   if((heroLocation.x<= (goblinLocation.x+32) )&& (heroLocation.y<=(goblinLocation.y+32)) &&(goblinLocation.x<=(heroLocation.x+32))&& (goblinLocation.y<=(heroLocation.y+32)))
+      {
+         reset();
+         goblinsCaught++;
+         console.log(goblinsCaught);
+         highScore();
+      }}:
+
+context.drawImage(goblin,goblin.x,goblin.y,35,35);
+
+
+----------------------------------------------------------
+
+var monsters=[];
+var monsterImage=[];
+monsterImage[0]=new Image();
+
+monsterImage[0].src='pidgeoto.png';
+
+monsterImage[1]=new Image();
+monsterImage[1].src='dragonfly.png';
+
+monsterImage[2]=new Image();
+monsterImage[2].src='purpleOne.png';
+
+monsterImage[3]=new Image();
+monsterImage[3].src='larados.png';
+var x=0;
+
+for(var i=0;i<monsterImage.length;i++){
+
+	x=monsterImage[i];
+
+	monsters.push(new Monsters(x));
+
+}
+
+
+function Monsters(x){
+	var x=Math.floor(Math.random()*canvas.width);
+	var y=Math.floor(Math.random()*canvas.height);;
+	this.x = x;
+	this.y= y;
+	this.src=x;
+	
+	};
+
+
+https://www.youtube.com/watch?v=NdJQopRuH1E
 
